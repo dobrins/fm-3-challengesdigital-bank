@@ -1,0 +1,32 @@
+@use "../utils" as *;
+
+.btn {
+  @include preset(7);
+  display: inline-flex;
+  color: var(--white);
+  background-image: var(--gradient-1);
+  padding: var(--space-100) var(--space-400);
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--space-1000);
+  position: relative;
+
+  @media (prefers-reduced-motion: no-preference) {
+    will-change: opacity;
+    transition: opacity 0.3s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline-offset: 2px;
+    outline: 0.125rem solid var(--green-600);
+  }
+}

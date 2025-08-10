@@ -14,6 +14,7 @@ The designs were created to the following widths:
 ### Primary
 
 - Blue 950: hsl(233, 26%, 24%)
+
 - Green 500: hsl(136, 64%, 51%)
 - Cyan 400: hsl(192, 69%, 51%)
 

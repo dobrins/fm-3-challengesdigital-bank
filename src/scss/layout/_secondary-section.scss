@@ -1,0 +1,129 @@
+@use "../utils" as *;
+
+.secondary-section {
+  padding-block: var(--space-1100);
+  background-color: var(--gray-50);
+
+  @include mq(m) {
+    padding-block: var(--space-1000);
+  }
+
+  @include mq(s) {
+    padding-block: var(--space-800);
+  }
+
+  &--colored {
+    background-color: var(--gray-100);
+    position: relative;
+    z-index: 2;
+  }
+
+  &__heading {
+    @include preset(2);
+    color: var(--blue-950);
+
+    @include mq(m) {
+      text-align: center;
+    }
+  }
+
+  &__description {
+    @include preset(5);
+    margin-block-start: var(--space-400);
+
+    @include mq(m) {
+      text-align: center;
+    }
+
+    @include mq(s) {
+      @include preset(71);
+    }
+
+    span {
+      display: block;
+
+      @include mq(m) {
+        display: initial;
+      }
+    }
+  }
+
+  &__benefits {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-400);
+    margin-block-start: var(--space-900);
+
+    @include mq(s) {
+      gap: var(--space-600);
+      margin-block-start: var(--space-600);
+    }
+  }
+
+  &__benefit {
+    padding-block-start: var(--space-1400);
+    position: relative;
+
+    @include mq(s) {
+      text-align: center;
+      padding-block-start: 0;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      width: var(--space-900);
+      height: var(--space-900);
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+
+      @include mq(s) {
+        position: initial;
+        margin: 0 auto var(--space-500) auto;
+      }
+    }
+
+    h3 {
+      @include preset(4);
+      color: var(--blue-950);
+    }
+
+    p {
+      font-size: var(--space-200);
+      letter-spacing: 0.25px;
+      margin-block-start: var(--space-300);
+
+      @include mq(s) {
+        @include preset(71);
+        margin-block-start: var(--space-200);
+      }
+    }
+
+    &[data-icon="online-banking"] {
+      &:before {
+        background-image: url(../../../images/icon-online.svg);
+      }
+    }
+
+    &[data-icon="simple-budgeting"] {
+      &:before {
+        background-image: url(../../../images/icon-budgeting.svg);
+      }
+    }
+
+    &[data-icon="fast-onboarding"] {
+      &:before {
+        background-image: url(../../../images/icon-onboarding.svg);
+      }
+    }
+
+    &[data-icon="open-api"] {
+      &:before {
+        background-image: url(../../../images/icon-api.svg);
+      }
+    }
+  }
+}

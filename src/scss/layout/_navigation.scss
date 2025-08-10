@@ -1,0 +1,138 @@
+@use "../utils" as *;
+
+.navigation {
+  display: none;
+
+  @include mq(m) {
+    display: block;
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    height: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  &__nav {
+    display: none;
+    position: fixed;
+    left: var(--space-1000);
+    top: var(--space-1050);
+    width: calc(100% - 10rem);
+    z-index: 15;
+    max-height: calc(100vh - var(--space-1100));
+    overflow-y: auto;
+    border-radius: var(--space-50);
+
+    @include mq(s) {
+      left: var(--space-300);
+      width: calc(100% - 3rem);
+    }
+  }
+
+  &__close {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-image: var(--gradient-2);
+    left: 0;
+    top: 0;
+    z-index: -1;
+    top: var(--space-800);
+  }
+
+  .header:has(&__checkbox:checked) ~ &__nav {
+    display: block;
+  }
+
+  &__list {
+    display: grid;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    background-color: var(--white);
+    padding-block: var(--space-400);
+  }
+
+  &__link {
+    @include preset(5);
+    display: inline-block;
+    padding: var(--space-100) var(--space-300);
+    color: var(--blue-950);
+
+    &:hover {
+      color: var(--green-600);
+    }
+  }
+
+  &__icon {
+    position: relative;
+
+    &,
+    &::before,
+    &::after {
+      display: inline-block;
+      width: 1.5rem;
+      height: 0.125rem;
+      background-color: var(--blue-950);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: -0.25rem;
+      left: 0;
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.2s;
+        will-change: transform;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &::after {
+      top: 0.25rem;
+    }
+  }
+
+  &__button:hover &__icon {
+    background-color: var(--green-600);
+  }
+
+  &__button:hover &__icon::before {
+    transform: translateY(-0.25rem);
+    background-color: var(--green-600);
+  }
+
+  &__button:hover &__icon::after {
+    transform: translateY(0.25rem);
+    background-color: var(--green-600);
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+
+    &::before,
+    &::after {
+      top: 0;
+    }
+
+    &::before {
+      transform: rotate(135deg);
+    }
+
+    &::after {
+      transform: rotate(-135deg);
+    }
+  }
+}

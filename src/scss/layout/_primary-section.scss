@@ -1,0 +1,105 @@
+@use "../utils" as *;
+
+.primary-section {
+  @include mq(m) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 50%;
+
+    @include mq(m) {
+      width: 100%;
+      position: static;
+    }
+  }
+
+  &::before {
+    background-image: url(../../../images/bg-intro-desktop.svg);
+    background-position: -4.5rem -12.125rem;
+    z-index: 0;
+
+    @include mq(m) {
+      background-position: left -5.5rem top -2.5rem;
+      background-size: 130%;
+      width: 100%;
+      aspect-ratio: 1/1.2292069633;
+      margin-block-start: -12rem;
+      position: absolute;
+    }
+
+    @include mq(s) {
+      background-image: url(../../../images/bg-intro-mobile.svg);
+      background-position-y: top -2.5rem;
+    }
+  }
+
+  &::after {
+    background-image: url(../../../images/image-mockups.png);
+    background-position: var(--space-1100) calc(-1 * var(--space-1100));
+    z-index: 3;
+    height: 110%;
+
+    @include mq(m) {
+      background-position: center;
+      background-size: contain;
+      width: calc(100vw - 8rem);
+      aspect-ratio: 1/1.22425032595;
+      margin: -14rem auto 0 auto;
+      position: relative;
+    }
+
+    @include mq(s) {
+      margin: -8rem auto 0 auto;
+      width: calc(100vw - 2rem);
+    }
+  }
+
+  &__content {
+    width: 27rem;
+    height: 41rem;
+    display: grid;
+    gap: var(--space-300);
+    justify-items: start;
+    align-content: center;
+
+    @include mq(m) {
+      width: auto;
+      max-width: 30rem;
+      height: auto;
+      text-align: center;
+      justify-items: center;
+      margin-block-end: var(--space-900);
+      padding-block-start: var(--space-300);
+    }
+
+    @include mq(s) {
+      margin-block-end: var(--space-700);
+    }
+  }
+
+  &__heading {
+    @include preset(1);
+    color: var(--blue-950);
+
+    @include mq(s) {
+      @include preset(2);
+    }
+  }
+
+  &__description {
+    @include preset(5);
+
+    @include mq(s) {
+      @include preset(71);
+    }
+  }
+}

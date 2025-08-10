@@ -1,0 +1,90 @@
+@use "variables" as *;
+@use "sass:map";
+
+// Media Queries
+
+@mixin mq($breakpoint) {
+  @if $breakpoint == s {
+    @media (max-width: 35em) {
+      @content;
+    }
+  } @else if $breakpoint == m {
+    @media (max-width: 50em) {
+      @content;
+    }
+  }
+}
+
+// Typography
+
+$preset-styles: (
+  1: (
+    font-size: 3.5rem,
+    line-height: 1.2,
+    letter-spacing: -1px,
+    font-weight: var(--light),
+  ),
+  2: (
+    font-size: 2.5rem,
+    line-height: 1.2,
+    letter-spacing: -0.75px,
+    font-weight: var(--light),
+  ),
+  3: (
+    font-size: 2rem,
+    line-height: 1.2,
+    letter-spacing: -0.5px,
+    font-weight: var(--light),
+  ),
+  4: (
+    font-size: 1.5rem,
+    line-height: 1.15,
+    letter-spacing: -0.4px,
+    font-weight: var(--light),
+  ),
+  5: (
+    font-size: 1.125rem,
+    line-height: 1.55,
+    letter-spacing: -0.25px,
+    font-weight: var(--regular),
+  ),
+  6: (
+    font-size: 1rem,
+    line-height: 1.2,
+    letter-spacing: -0.25px,
+    font-weight: var(--light),
+  ),
+  7: (
+    font-size: 0.875rem,
+    line-height: 2,
+    letter-spacing: 0,
+    font-weight: var(--bold),
+  ),
+  71: (
+    font-size: 0.875rem,
+    line-height: 1.15,
+    letter-spacing: 0,
+    font-weight: var(--regular),
+  ),
+  8: (
+    font-size: 0.625rem,
+    line-height: 1.15,
+    letter-spacing: 0,
+    font-weight: var(--regular),
+  ),
+);
+
+@mixin preset($n) {
+  $preset: map.get($preset-styles, $n);
+
+  @each $prop, $value in $preset {
+    #{$prop}: $value;
+  }
+}
+
+@mixin center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}

@@ -1,0 +1,100 @@
+@use "../utils" as *;
+
+.header {
+  position: relative;
+  background: var(--white);
+  z-index: 15;
+
+  @include mq(m) {
+    position: sticky;
+    top: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--space-1000);
+    background-color: var(--white);
+
+    @include mq(m) {
+      height: var(--space-800);
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  &__nav {
+    align-self: stretch;
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  &__nav ul {
+    display: flex;
+    height: 100%;
+
+    li {
+      display: flex;
+    }
+
+    a {
+      @include preset(71);
+      color: var(--gray-600);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-inline: var(--space-200);
+
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: var(--space-50);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-image: var(--gradient-1);
+        transform: translateY(var(--space-50));
+
+        @media (prefers-reduced-motion: no-preference) {
+          will-change: transform;
+          transition: transform 0.2s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      }
+
+      &:hover {
+        color: var(--blue-950);
+
+        &::after {
+          transform: translateY(0);
+        }
+      }
+
+      &:focus-visible {
+        outline: 0;
+        color: var(--green-600);
+
+        &::after {
+          transform: translateY(0);
+          opacity: 0.1;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    @include mq(m) {
+      display: none;
+    }
+  }
+}
